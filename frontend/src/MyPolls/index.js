@@ -80,7 +80,7 @@ const MyPolls = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/delete-poll/${pollId}`,
+        `https://poll-app-backend-h0jw.onrender.com/delete-poll/${pollId}`,
         {
           method: "DELETE",
           headers: {
