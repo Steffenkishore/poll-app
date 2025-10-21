@@ -1,23 +1,76 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import CreatePoll from "./CreatePoll";
+import LivePolls from "./LivePolls";
+import LoginForm from "./LoginForm";
+import Signup from "./Signup";
+import Home from "./Home";
+import ProtectedRoute from "./ProtectedRoute";
+import MyPolls from "./MyPolls";
+import MyPollDetail from "./MyPollDetail";
+import VotedPolls from "./VotedPolls";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-con">
+      <Routes>
+        <Route exact path="/login" element={<LoginForm />} />
+        <Route exact path="/signup" element={<Signup />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/create-poll"
+          element={
+            <ProtectedRoute>
+              <CreatePoll />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/live-polls"
+          element={
+            <ProtectedRoute>
+              <LivePolls />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/my-polls"
+          element={
+            <ProtectedRoute>
+              <MyPolls />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/voted-polls"
+          element={
+            <ProtectedRoute>
+              <VotedPolls />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          exact
+          path="/my-polls/poll/:qnsid"
+          element={
+            <ProtectedRoute>
+              <MyPollDetail />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </div>
   );
 }

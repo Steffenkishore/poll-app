@@ -1,0 +1,86 @@
+.login-bg-con {
+  display: flex;
+  background-image: url("../assets/login-page-background.png");
+  background-size: contain;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-bg-con-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.welcome-container {
+  background-color: rgb(255, 255, 255);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 330px;
+  height: 96.3%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.sub-welcome-con {
+  width: 90%;
+}
+.username-input {
+  background-color: #ffffff;
+  height: 25px;
+  padding: 3px;
+  border-radius: 6px;
+  margin: 8px;
+}
+
+.username-input-box {
+  background-color: transparent;
+  border-width: 0px;
+}
+
+.username-input-box:focus {
+  outline: none;
+  border: none;
+}
+
+.username-icon {
+  font-size: 12px;
+  margin-left: 7px;
+  margin-right: 8px;
+  color: #777676;
+}
+
+.login-button {
+  height: 30px;
+  width: 200px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border-width: 0px;
+  margin: 8px;
+  margin-bottom: 10px;
+  color: rgb(255, 166, 0);
+  font-size: 19px;
+  font-weight: bold;
+}
+
+.signin-heading {
+  margin-bottom: 8px;
+}
+
+.signup-link {
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.welcome-heading {
+  font-family: roboto;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
