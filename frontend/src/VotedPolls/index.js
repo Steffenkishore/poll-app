@@ -51,7 +51,7 @@ const VotedPolls = () => {
     const apiFetch = async () => {
       initial.current = true;
       const jwtToken = Cookies.get("jwt_token");
-      const apiUrl = "http://localhost:3000/voted-polls";
+      const apiUrl = "https://poll-app-backend-h0jw.onrender.com/voted-polls";
       const option = {
         method: "GET",
         headers: {

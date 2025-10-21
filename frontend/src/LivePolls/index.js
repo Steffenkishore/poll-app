@@ -40,7 +40,7 @@ const LivePolls = () => {
         return;
       }
       try {
-        const response = await fetch("http://localhost:3000/get-polls", {
+        const response = await fetch("https://poll-app-backend-h0jw.onrender.com/get-polls", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const LivePolls = () => {
           votedAt: new Date(),
         };
         try {
-          const apiUrlForPost = "http://localhost:3000/answered-polls";
+          const apiUrlForPost = "https://poll-app-backend-h0jw.onrender.com/answered-polls";
           const response = await fetch(apiUrlForPost, {
             method: "POST",
             headers: {

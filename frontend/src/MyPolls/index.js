@@ -37,7 +37,7 @@ const MyPolls = () => {
     const jwtToken = Cookies.get("jwt_token");
     const getPolls = async () => {
       try {
-        const apiUrl = "http://localhost:3000/my-polls";
+        const apiUrl = "https://poll-app-backend-h0jw.onrender.com/my-polls";
         const option = {
           method: "GET",
           headers: {
@@ -80,7 +80,7 @@ const MyPolls = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/delete-poll/${pollId}`,
+        `https://poll-app-backend-h0jw.onrender.com/delete-poll/${pollId}`,
         {
           method: "DELETE",
           headers: {

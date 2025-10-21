@@ -39,7 +39,7 @@ const Signup = () => {
     try {
       const postData = { ...signUpDetails, userId: uuidv4() };
       console.log(postData);
-      const apiUrl = "http://localhost:3000/sign-up";
+      const apiUrl = "https://poll-app-backend-h0jw.onrender.com/sign-up";
       const option = {
         method: "POST",
         headers: {
