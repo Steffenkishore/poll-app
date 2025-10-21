@@ -151,7 +151,7 @@ const CreatePoll = () => {
             type: "SET_STATUS_FAILURE",
             payload: "Authentication required.",
           });
-        const res = await fetch("http://localhost:3000/add-poll", {
+        const res = await fetch("https://poll-app-backend-h0jw.onrender.com/add-poll", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
