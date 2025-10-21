@@ -1,0 +1,9 @@
+* {
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+
+.bg-con {
+  min-height:100vh;
+  position: relative;
+}

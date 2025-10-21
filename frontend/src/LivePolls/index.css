@@ -1,0 +1,238 @@
+:root {
+  --primary: #4F46E5;   /* Indigo */
+  --secondary: #FACC15; /* Yellow */
+  --text-dark: #111827;
+  --text-light: #6B7280;
+  --bg-light: #F9FAFB;
+  --bg-white: #ffffff;
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+/* Main container */
+.main-content-bg {
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+
+/* Filter Sidebar */
+.filter-section-bg {
+  /* position: fixed;
+  top: 70px;
+  left: 0; */
+  /* height: calc(100vh - 70px); */
+  min-height:90vh;
+  width: 300px;
+  background: var(--bg-white);
+  border-right: 1px solid #e5e7eb;
+  padding: 1rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+
+.filter-section-bg input[type="search"] {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+}
+
+.filter-section-bg h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+}
+
+.filter-section-bg div p {
+  color: var(--text-light);
+  padding: 0.3rem 0;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.filter-section-bg div p:hover {
+  color: var(--primary);
+}
+
+.livepoll-main-bg {
+  display:flex;
+  flex-direction:row;
+  justify-content:flex-start;
+}
+
+/* Polls Grid */
+.main-content-bg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+/* Poll Card */
+.live-poll-form {
+  background: var(--bg-white);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  width: 300px;
+  min-height:300px;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  gap: 0.75rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.live-poll-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Question */
+.qns-heading {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Info row */
+.qns-info-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+/* Options */
+.option-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top:6px;
+}
+
+.option-style {
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background: var(--bg-light);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option-style:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.selected {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.not-selected {
+  background: var(--bg-light);
+}
+
+/* Submit Button */
+.post-button {
+  margin-top: auto;
+  padding: 0.6rem;
+  background: var(--secondary);
+  color: var(--text-dark);
+  font-weight: 500;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.post-button:hover {
+  background: #eab308;
+}
+
+
+/* Added styling for new features and improvements */
+
+.info-msg {
+  font-size: 1rem;
+  color: #555;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.voted-msg {
+  color: #388e3c;
+  font-weight: 600;
+}
+
+.category-select {
+  width: 100%;
+  padding: 0.35rem;
+  border-radius: 0.3rem;
+  border: 1px solid #d1d5db;
+  font-size: 0.95rem;
+  margin-top: 4px;
+  cursor: pointer;
+}
+
+.poll-buttons-row {
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
+}
+
+.delete-button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.delete-button:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.delete-button:disabled {
+  background-color: #f87171;
+  cursor: not-allowed;
+}
+
+/* Disable voting buttons when voted */
+.live-poll-form button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Adjust post-button disabled style */
+.post-button:disabled {
+  background-color: #a1a1aa;
+  cursor: not-allowed;
+}
