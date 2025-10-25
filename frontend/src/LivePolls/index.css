@@ -31,10 +31,6 @@ body {
 
 /* Filter Sidebar */
 .filter-section-bg {
-  /* position: fixed;
-  top: 70px;
-  left: 0; */
-  /* height: calc(100vh - 70px); */
   min-height:90vh;
   width: 300px;
   background: var(--bg-white);
@@ -42,6 +38,36 @@ body {
   padding: 1rem;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
   overflow-y: auto;
+}
+
+.filter-moblie-section {
+  display:none;
+  flex-direction:row;
+  justify-content:flex-start;
+  width:90vw;
+  margin:8px;
+}
+
+@media only screen and (max-width: 600px)  {
+  .filter-section-bg {
+    display:none;
+    min-height:90vh;
+    width: 300px;
+    background: var(--bg-white);
+    border-right: 1px solid #e5e7eb;
+    padding: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+  }
+
+  .filter-moblie-section {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    width:90vw;
+    margin:8px;
+  }
+
 }
 
 .filter-section-bg input[type="search"] {
@@ -82,6 +108,19 @@ body {
   flex: 1;
 }
 
+@media only screen and (max-width: 978px) {
+  .main-content-bg {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    flex: 1;
+    
+  }
+
+}
+
+
 /* Poll Card */
 .live-poll-form {
   background: var(--bg-white);
@@ -89,7 +128,6 @@ body {
   padding: 1.25rem;
   width: 300px;
   min-height:300px;
-  
   display: flex;
   flex-direction: column;
   justify-content:space-between;

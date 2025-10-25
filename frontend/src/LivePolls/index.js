@@ -213,7 +213,18 @@ const LivePolls = () => {
   return (
     <div>
       <Navbar />
+      <div className="filter-moblie-section">
+        <input
+          type="search"
+          placeholder="Search polls..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          aria-label="Search polls"
+        />
+        <p>filter</p>
+      </div>
       <div className="livepoll-main-bg">
+        {/* FILTER SECTION */}
         <div className="filter-section-bg">
           {/* Search input */}
           <input
@@ -245,7 +256,7 @@ const LivePolls = () => {
           {/* OPTION TYPE FILTER */}
           <div style={{ marginBottom: 16 }}>
             <p>Option Type</p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ display: "flex", gap: "1rem" }}>
               <label>
                 <input
                   type="radio"
@@ -288,6 +299,7 @@ const LivePolls = () => {
             Clear Filters
           </button>
         </div>
+
         {/* ...rest of your main-content-bg/poll rendering stays unchanged... */}
         <div className="main-content-bg">
           {loading && <p className="info-msg">Loading polls...</p>}
@@ -330,7 +342,9 @@ const LivePolls = () => {
                         key={option.id}
                         className={
                           selected
-                            .find((item) => item.questionId === sample.questionId)
+                            .find(
+                              (item) => item.questionId === sample.questionId
+                            )
                             ?.answer.some((ans) => ans.answerId === option.id)
                             ? "selected option-style"
                             : "not-selected option-style"
@@ -348,7 +362,9 @@ const LivePolls = () => {
                         disabled={hasVoted}
                         aria-pressed={
                           selected
-                            .find((item) => item.questionId === sample.questionId)
+                            .find(
+                              (item) => item.questionId === sample.questionId
+                            )
                             ?.answer.some((ans) => ans.answerId === option.id)
                             ? "true"
                             : "false"
