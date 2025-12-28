@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { MdCancelPresentation } from "react-icons/md";
+import logo from '../assets/AskIT_logo.png'
 import Cookies from "js-cookie";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import "./index.css";
@@ -32,7 +33,8 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar">
-        <h1 className="navbar-logo">Poll App</h1>
+        {/* <h1 className="navbar-logo"></h1> */}
+        <img src={logo} alt="logo" className="logo-style"/>
 
         {/* Desktop Menu */}
         <ul className="nav-list">

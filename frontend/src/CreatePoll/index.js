@@ -380,10 +380,13 @@ const CreatePoll = () => {
   }
 
   return (
-    <div>
+    <>
       <Navbar />
-      {renderContent}
-    </div>
+      <div className="create-poll-section">
+        {/* <Navbar /> */}
+        {renderContent}
+      </div>
+    </>
   );
 };
 

@@ -10,6 +10,7 @@
   text-align: center;
   color: var(--text-light);
   font-weight: 500;
+  padding: 2.5rem;
 }
 
 .mypolls-grid {
@@ -72,4 +73,21 @@
 
 .link-style {
   text-decoration: none;
+}
+
+@media only screen and (min-width:701px) {
+  .filter-button {
+    display:none;
+  }  
+}
+
+@media only screen and (max-width:701px) {
+  .filter-section-bg {
+    display:none;
+  }
+
+  .mypolls-grid {
+    display: flex;
+    justify-content:center;
+  }
 }

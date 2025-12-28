@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Navbar from "./Navbar";
 import CreatePoll from "./CreatePoll";
 import LivePolls from "./LivePolls";
 import LoginForm from "./LoginForm";
@@ -20,7 +21,7 @@ function App() {
           exact
           path="/"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute className="protected-route">
               <Home />
             </ProtectedRoute>
           }

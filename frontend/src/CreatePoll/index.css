@@ -1,8 +1,12 @@
+.create-poll-section {
+  padding-top: 70px;
+}
+
 .poll-bg {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  min-height: 90vh;
   background: linear-gradient(135deg, #d5f3f3 0%, #f0ecfc 100%);
 }
 
@@ -169,6 +173,7 @@
 }
 .poll-success-bg {
   background: linear-gradient(135deg, #e9f7fe 0%, #ebe3fc 100%);
+  height:98vh;
 }
 .poll-success-card {
   background: #fff;
@@ -231,5 +236,9 @@
 }
 
 @media (max-width: 570px) {
-  .poll-card, .poll-success-card { padding: 16px; }
+  .poll-card, .poll-success-card { padding: 16px; margin-top:8rem;}
+  .create-poll-section {
+    padding-top:5px;
+  }
+
 }
