@@ -57,6 +57,10 @@ body {
   transition: color 0.25s ease;
 }
 
+.logo-link {
+  outline:none;
+}
+
 .nav-link:hover,
 .nav-link:focus {
   color: #2563eb; /* blue-600 */
@@ -197,6 +201,9 @@ body {
   }
   .menu-toggle {
     display: inline;
+  }
+  .btn-logout {
+    padding:8px;
   }
 }
 
