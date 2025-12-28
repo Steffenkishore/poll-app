@@ -33,8 +33,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar">
-        {/* <h1 className="navbar-logo"></h1> */}
-        <img src={logo} alt="logo" className="logo-style"/>
+        <Link to="/" className="logo-link">
+          <img src={logo} alt="logo" className="logo-style" />
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="nav-list">

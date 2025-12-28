@@ -48,9 +48,10 @@ function App() {
           exact
           path="/my-polls"
           element={
-            <ProtectedRoute>
-              <MyPolls />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            //   <MyPolls />
+            // </ProtectedRoute>
+            <MyPolls />
           }
         />
         <Route
@@ -66,9 +67,10 @@ function App() {
           exact
           path="/my-polls/poll/:qnsid"
           element={
-            <ProtectedRoute>
-              <MyPollDetail />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            //   <MyPollDetail />
+            // </ProtectedRoute>
+            <MyPollDetail />
           }
         />
       </Routes>
