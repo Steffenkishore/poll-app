@@ -39,7 +39,9 @@ const MyPollDetail = () => {
       hasFetched.current = true;
       const jwtToken = Cookies.get("jwt_token");
       try {
-        const apiUrl = `http://localhost:3000/my-polls/poll/${qnsid}`;
+        // const apiUrl = `https://poll-app-backend-h0jw.onrender.com/my-polls/poll/${qnsid}`;
+        const apiUrl = `${process.env.REACT_APP_API_URL}/my-polls/poll/${qnsid}`;
+  
         const option = {
           method: "GET",
           headers: {

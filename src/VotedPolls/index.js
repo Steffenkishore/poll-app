@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 import Navbar from "../Navbar";
 import { Pie, Bar } from "react-chartjs-2";
+import { IoFilter } from "react-icons/io5";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -46,12 +47,14 @@ const VotedPolls = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [optionTypeFilter, setOptionTypeFilter] = useState("");
+  const [activeFilter, setActiveFilter] = useState(false);
 
   useEffect(() => {
     const apiFetch = async () => {
       initial.current = true;
       const jwtToken = Cookies.get("jwt_token");
-      const apiUrl = "http://localhost:3000/voted-polls";
+      // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/voted-polls";
+      const apiUrl = `${process.env.REACT_APP_API_URL}/voted-polls`;
       const option = {
         method: "GET",
         headers: {
@@ -88,16 +91,26 @@ const VotedPolls = () => {
     });
   };
 
+  const changeFilter = () => {
+    setActiveFilter((prev) => !prev);
+  };
+
   const renderFilterSection = () => (
-    <aside className="filter-section-bg" aria-label="Poll filters">
+    <aside
+      className={
+        activeFilter ? "filter-section-bg-active" : "filter-section-bg"
+      }
+      style={{ marginTop: "70px" }}
+      aria-label="Poll filters"
+    >
       <input
         type="search"
+        className="filter-section-bg-search"
         placeholder="Search polls..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         aria-label="Search polls"
       />
-      <h3>Filters</h3>
 
       <div className="filter-group">
         <p>Category</p>
@@ -172,8 +185,7 @@ const VotedPolls = () => {
     if (filteredQuestions.length === 0) {
       return (
         <>
-          {renderFilterSection()}
-          <p className="info-msg no-polls-msg">
+          <p className="info-msg no-polls-msg" style={{ marginTop: "70px" }}>
             There are no voted polls matching your filters.
           </p>
         </>
@@ -295,6 +307,9 @@ const VotedPolls = () => {
       <Navbar />
       <div className="main-con-bg">
         {renderFilterSection()}
+        <button className="filter-button" onClick={changeFilter}>
+          <IoFilter />
+        </button>
         <main className="voted-poll-bg">
           {result.status === "SUCCESS" && renderSuccess()}
           {result.status === "FAILED" && (

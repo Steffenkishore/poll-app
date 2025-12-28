@@ -19,6 +19,7 @@
   padding: 40px 20px;
   position: relative;
   overflow: hidden;
+  margin-top:3rem;
 }
 
 .hero-section::before {
@@ -58,6 +59,7 @@
   line-height: 1.2;
   margin-bottom: 24px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
 }
 
 .highlight {
@@ -463,6 +465,7 @@
     flex-direction: column;
     text-align: center;
     padding: 20px;
+    margin-top:4rem;
   }
 
   .hero-title {

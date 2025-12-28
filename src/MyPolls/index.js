@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar";
+import { IoFilter } from "react-icons/io5";
 import "./index.css"; // Add styles here
 
 const MyPolls = () => {
@@ -15,6 +16,7 @@ const MyPolls = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [optionTypeFilter, setOptionTypeFilter] = useState("");
+  const [activeFilter, setActiveFilter] = useState(false);
 
   const availableCategory = [
     "Food and Drink",
@@ -37,7 +39,8 @@ const MyPolls = () => {
     const jwtToken = Cookies.get("jwt_token");
     const getPolls = async () => {
       try {
-        const apiUrl = "http://localhost:3000/my-polls";
+        // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/my-polls";
+        const apiUrl = `${process.env.REACT_APP_API_URL}/my-polls`;
         const option = {
           method: "GET",
           headers: {
@@ -79,8 +82,11 @@ const MyPolls = () => {
     }
 
     try {
+      const apiDeleteUrl = `${process.env.REACT_APP_API_URL}/delete-poll/${pollId}`;
+      // const apiDeleteUrl = `https://poll-app-backend-h0jw.onrender.com/delete-poll/${pollId}`;
+      
       const response = await fetch(
-        `http://localhost:3000/delete-poll/${pollId}`,
+        apiDeleteUrl,
         {
           method: "DELETE",
           headers: {
@@ -108,15 +114,20 @@ const MyPolls = () => {
   };
 
   const filterSection = () => (
-    <div className="filter-section-bg">
+    <div
+      className={
+        activeFilter ? "filter-section-bg-active" : "filter-section-bg"
+      }
+      style={{marginTop:"70px"}}
+    >
       <input
         type="search"
         placeholder="Search"
+        className="filter-section-bg-search"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         aria-label="Search polls"
       />
-      <h3>Filters</h3>
       {/* CATEGORY FILTER */}
       <div style={{ marginBottom: 16 }}>
         <p>Category</p>
@@ -135,7 +146,7 @@ const MyPolls = () => {
         </select>
       </div>
       {/* OPTION TYPE FILTER */}
-      <div style={{ marginBottom: 16 }}>
+      <div className="filter-group" >
         <p>Option Type</p>
         <label style={{ marginRight: 8 }}>
           <input
@@ -200,14 +211,21 @@ const MyPolls = () => {
 
     console.log(myPolls)
 
+    const changeFilter = () => {
+      setActiveFilter((prev) => !prev);
+    };
+
 
 
   return (
     <div>
       <Navbar />
+      <button className="filter-button" onClick={changeFilter}>
+        <IoFilter />
+      </button>
       <div className="mypolls-container">
         <div>{filterSection()}</div>
-        <div>
+        <div style={{ marginTop: "70px" }}>
           {filteredData.length === 0 ? (
             <h2 className="no-polls">No Polls Available</h2>
           ) : (

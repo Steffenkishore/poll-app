@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { FaUserAlt, FaUnlockAlt } from "react-icons/fa";
-import { LoginFormStyle } from "./styledComponents";
 import { Link, Navigate } from "react-router-dom";
 import './index.css'
 
@@ -25,7 +24,8 @@ const LoginForm = () => {
     } else {
       console.log(loginUserDetail);
       try {
-        const apiUrl = "http://localhost:3000/login";
+        // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/login";
+        const apiUrl = `${process.env.REACT_APP_API_URL}/login`;
         const option = {
           method: "POST",
           headers: {
@@ -71,7 +71,7 @@ const LoginForm = () => {
               </p>
             </div>
           </div>
-          <LoginFormStyle onSubmit={(e) => submitLoginDetails(e)}>
+          <form className="login-form" onSubmit={(e) => submitLoginDetails(e)}>
             <h1 className="signin-heading">Sign in</h1>
             <div className="username-input">
               <FaUserAlt className="username-icon" />;
@@ -113,7 +113,7 @@ const LoginForm = () => {
                 Sign up
               </Link>
             </p>
-          </LoginFormStyle>
+          </form>
         </div>
       );
     } else {

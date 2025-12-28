@@ -39,7 +39,8 @@ const Signup = () => {
     try {
       const postData = { ...signUpDetails, userId: uuidv4() };
       console.log(postData);
-      const apiUrl = "http://localhost:3000/sign-up";
+      // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/sign-up";
+      const apiUrl = `${process.env.REACT_APP_API_URL}/sign-up`;
       const option = {
         method: "POST",
         headers: {
@@ -61,7 +62,7 @@ const Signup = () => {
   };
 
   return (
-    <div className={ submitStatus.status === "SUCCESS" ? 'signup-background-container-success' : 'signup-background-container' }>
+      <div className={ submitStatus.status === "SUCCESS" ? 'signup-background-container-success' : 'signup-background-container' }>
       {submitStatus.status === "SUCCESS" ? (
         <div className="success-signup-container">
           <div className="success-signup-container-2">

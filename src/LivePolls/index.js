@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Navbar from "../Navbar";
+import { IoFilter } from "react-icons/io5";
 import "./index.css";
 
 const LivePolls = () => {
@@ -12,6 +13,7 @@ const LivePolls = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("");
   const [optionTypeFilter, setOptionTypeFilter] = useState(""); // NEW STATE
+  const [activeFilter, setActiveFilter] = useState(false);
 
   const availableCategory = [
     "Food and Drink",
@@ -40,7 +42,9 @@ const LivePolls = () => {
         return;
       }
       try {
-        const response = await fetch("http://localhost:3000/get-polls", {
+        const apiUrl = `${process.env.REACT_APP_API_URL}/get-polls`;
+        // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/get-polls";
+        const response = await fetch(apiUrl, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -98,7 +102,8 @@ const LivePolls = () => {
           votedAt: new Date(),
         };
         try {
-          const apiUrlForPost = "http://localhost:3000/answered-polls";
+          // const apiUrlForPost = "https://poll-app-backend-h0jw.onrender.com/answered-polls";
+          const apiUrlForPost = `${process.env.REACT_APP_API_URL}/answered-polls`;
           const response = await fetch(apiUrlForPost, {
             method: "POST",
             headers: {
@@ -209,21 +214,38 @@ const LivePolls = () => {
     setOptionTypeFilter("");
   };
 
+  const changeFilter = () => {
+    setActiveFilter(prev => !prev);
+  }
+
+  console.log("filter state",activeFilter);
+
   // --- UI ---
   return (
     <div>
       <Navbar />
+      <div className="filter-moblie-section">
+        <button className="filter-button" onClick={changeFilter}>
+          <IoFilter />
+        </button>
+      </div>
       <div className="livepoll-main-bg">
-        <div className="filter-section-bg">
+        {/* FILTER SECTION */}
+        <div
+          className={
+            activeFilter ? "filter-section-bg-active" : "filter-section-bg"
+          }
+          style={{ marginTop: "70px" }}
+        >
           {/* Search input */}
           <input
             type="search"
+            className="filter-section-bg-search"
             placeholder="Search polls..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             aria-label="Search polls"
           />
-          <h3>Filters</h3>
           {/* CATEGORY FILTER - FROM availableCategory */}
           <div style={{ marginBottom: 16 }}>
             <p>Category</p>
@@ -243,9 +265,9 @@ const LivePolls = () => {
           </div>
 
           {/* OPTION TYPE FILTER */}
-          <div style={{ marginBottom: 16 }}>
+          <div className="filter-group" style={{ marginBottom: 16 }}>
             <p>Option Type</p>
-            <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ display: "flex", gap: "1rem" }}>
               <label>
                 <input
                   type="radio"
@@ -288,6 +310,7 @@ const LivePolls = () => {
             Clear Filters
           </button>
         </div>
+
         {/* ...rest of your main-content-bg/poll rendering stays unchanged... */}
         <div className="main-content-bg">
           {loading && <p className="info-msg">Loading polls...</p>}
@@ -330,7 +353,9 @@ const LivePolls = () => {
                         key={option.id}
                         className={
                           selected
-                            .find((item) => item.questionId === sample.questionId)
+                            .find(
+                              (item) => item.questionId === sample.questionId
+                            )
                             ?.answer.some((ans) => ans.answerId === option.id)
                             ? "selected option-style"
                             : "not-selected option-style"
@@ -348,7 +373,9 @@ const LivePolls = () => {
                         disabled={hasVoted}
                         aria-pressed={
                           selected
-                            .find((item) => item.questionId === sample.questionId)
+                            .find(
+                              (item) => item.questionId === sample.questionId
+                            )
                             ?.answer.some((ans) => ans.answerId === option.id)
                             ? "true"
                             : "false"

@@ -18,7 +18,9 @@ body {
   color: var(--text-dark);
 }
 
+
 /* Main container */
+
 .main-content-bg {
   display: flex;
   flex-direction:row;
@@ -26,25 +28,83 @@ body {
   flex-wrap: wrap;
   gap: 1.5rem;
   padding: 2rem;
+  position: relative;
+  margin-top:70px;
 }
 
 
 /* Filter Sidebar */
 .filter-section-bg {
-  /* position: fixed;
-  top: 70px;
-  left: 0; */
-  /* height: calc(100vh - 70px); */
-  min-height:90vh;
-  width: 300px;
+  min-height:95vh;
+  margin-top: 100px;
+  max-width:300px;
   background: var(--bg-white);
   border-right: 1px solid #e5e7eb;
   padding: 1rem;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
-  overflow-y: auto;
+  
 }
 
-.filter-section-bg input[type="search"] {
+.filter-moblie-section {
+  display:none;
+  flex-direction:row;
+  justify-content:flex-start;
+  width:90vw;
+  margin:8px;
+}
+
+.filter-button {
+  background-color: #fff8f0;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  text-align: center;
+  color: #000000;
+  font-size:22px;
+  padding-top:5px;
+  position: fixed;
+  bottom: 0;
+  margin-bottom:8px;
+  z-index: 2001;
+  outline:none;
+  margin-left:8px;
+}
+
+@media only screen and (max-width: 701px)  {
+  .filter-section-bg {
+    display:none;
+    min-height:90vh;
+    width: 300px;
+    background: var(--bg-white);
+    border-right: 1px solid #e5e7eb;
+    padding: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+  }
+
+  .filter-moblie-section {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+    width:100vw;
+    margin:0px;
+  }
+
+  .filter-section-bg-active {
+    height:auto;
+    width: 100%;
+    background: var(--bg-white);
+    border-right: 1px solid #e5e7eb;
+    padding: 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+    position:fixed;
+    z-index: 1;
+    bottom:0;
+  }
+}
+
+.filter-section-bg-search {
   width: 100%;
   padding: 0.6rem;
   margin-bottom: 1rem;
@@ -72,6 +132,7 @@ body {
   display:flex;
   flex-direction:row;
   justify-content:flex-start;
+  position: relative;
 }
 
 /* Polls Grid */
@@ -82,6 +143,30 @@ body {
   flex: 1;
 }
 
+@media only screen and (min-width:916px) and (max-width: 978px) {
+  .main-content-bg {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 1;
+    padding:8px;
+    margin-top:70px;
+  }
+}
+
+@media only screen and (max-width:916px) {
+  .main-content-bg {
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    flex: 1;
+    margin-top:70px;
+  }
+}
+
+
+
 /* Poll Card */
 .live-poll-form {
   background: var(--bg-white);
@@ -89,7 +174,6 @@ body {
   padding: 1.25rem;
   width: 300px;
   min-height:300px;
-  
   display: flex;
   flex-direction: column;
   justify-content:space-between;
