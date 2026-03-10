@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useRef } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { v4 as uuidv4 } from "uuid";
-import Cookie from "js-cookie";
+  import Cookie from "js-cookie";
 import { MdDeleteForever } from "react-icons/md";
 import Navbar from "../Navbar";
 import SuccessTick from "../assets/green-tick.png"
