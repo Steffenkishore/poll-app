@@ -1,11 +1,11 @@
-import React, { useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import { v4 as uuidv4 } from "uuid";
   import Cookie from "js-cookie";
 import { MdDeleteForever } from "react-icons/md";
 import Navbar from "../Navbar";
 import SuccessTick from "../assets/green-tick.png"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./index.css";
 
 const pollStatusWords = {
@@ -151,7 +151,7 @@ const CreatePoll = () => {
             type: "SET_STATUS_FAILURE",
             payload: "Authentication required.",
           });
-        const res = await fetch("https://poll-app-backend-h0jw.onrender.com/add-poll", {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -10,7 +10,6 @@ const MyPolls = () => {
     status: "INITIAL",
     data: null,
   });
-  const [deletePollingId, setDeletePollingId] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteError, setDeleteError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -62,7 +61,7 @@ const MyPolls = () => {
     if (myPolls.status === "INITIAL") {
       getPolls();
     }
-  }, []);
+  }, [myPolls.status]);
 
   const handleDeletePoll = async (pollId) => {
     if (
