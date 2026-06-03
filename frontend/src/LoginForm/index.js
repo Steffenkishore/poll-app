@@ -16,10 +16,14 @@ const LoginForm = () => {
 
   const submitLoginDetails = async (e) => {
     e.preventDefault();
+    setLoginStatus((prev) => ({...prev, status: "LOADING"}));
+
     const { userName, password } = loginUserDetail;
     if (userName === "" || password === "") {
+      setLoginStatus((prev) => ({ ...prev, status: "SUCCESS" }));
       return alert("All fields are required!!");
     } else if (password.length < 8) {
+      setLoginStatus((prev) => ({ ...prev, status: "SUCCESS" }));
       return alert("Password must be atleast 8 characters!!");
     } else {
       console.log(loginUserDetail);
@@ -36,6 +40,7 @@ const LoginForm = () => {
         const response = await fetch(apiUrl, option);
         const data = await response.json();
         if (response.ok) {
+          setLoginStatus((prev) => ({ ...prev, status: "SUCCESS" }));
           console.log(data);
           Cookies.set("jwt_token", data.jwtToken, {
             expires: 1,
@@ -55,7 +60,15 @@ const LoginForm = () => {
     }
   };
 
+  console.log(loginStatus)
+
   const renderFinal = () => {
+    if (loginStatus.status === "LOADING") {
+      return (
+        <div className="loader"></div>
+      )
+    }
+    
     const jwtToken = Cookies.get("jwt_token");
     if (jwtToken === undefined) {
       return (
