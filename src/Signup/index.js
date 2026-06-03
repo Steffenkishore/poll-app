@@ -22,6 +22,7 @@ const Signup = () => {
 
   const signUpForm = async (e) => {
     e.preventDefault();
+    setSubmitStatus((prev) => ({...prev, status: "LOADING"}))
     const { fullName, dob, gender, userName, email, password } = signUpDetails;
     if (
       fullName === "" ||
@@ -31,35 +32,53 @@ const Signup = () => {
       email === "" ||
       password === ""
     ) {
-      return alert("All fields are required!");
+      setSubmitStatus({
+        status: "FAILED",
+        responseMsg: "All fields are required!",
+      });
+      return
     } else if (password.length < 8) {
-      return alert("Password must be greater than 8 characters");
-    }
-
-    try {
-      const postData = { ...signUpDetails, userId: uuidv4() };
-      console.log(postData);
-      // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/sign-up";
-      const apiUrl = `${process.env.REACT_APP_API_URL}/sign-up`;
-      const option = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      };
-      const response = await fetch(apiUrl, option);
-      const data = await response.json();
-      console.log(data);
-      if (response.ok) {
-        setSubmitStatus({ status: "SUCCESS", responseMsg: data.msg });
-      } else {
-        setSubmitStatus({ status: "FAILED", responseMsg: data.msg });
+      setSubmitStatus({
+        status: "FAILED",
+        responseMsg: "Password must be greater than 8 characters",
+      });
+      return;
+    } else {
+      try {
+        const postData = { ...signUpDetails, userId: uuidv4() };
+        console.log(postData);
+        // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/sign-up";
+        const apiUrl = `${process.env.REACT_APP_API_URL}/sign-up`;
+        const option = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        };
+        const response = await fetch(apiUrl, option);
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+          setSubmitStatus({ status: "SUCCESS", responseMsg: data.msg });
+          return;
+        } else {
+          setSubmitStatus({ status: "FAILED", responseMsg: data.msg });
+          return;
+        }
+      } catch (e) {
+        console.log(e);
       }
-    } catch (e) {
-      console.log(e);
     }
   };
+
+  console.log(submitStatus)
+
+  if (submitStatus.status === "LOADING") {
+    return (
+      <div className="loader"></div>
+    )
+  }
 
   return (
       <div className={ submitStatus.status === "SUCCESS" ? 'signup-background-container-success' : 'signup-background-container' }>

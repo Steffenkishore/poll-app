@@ -151,7 +151,7 @@ const CreatePoll = () => {
             type: "SET_STATUS_FAILURE",
             payload: "Authentication required.",
           });
-        const res = await fetch(`${process.env.REACT_APP_API_URL}`, {
+        const res = await fetch(`${process.env.REACT_APP_API_URL}/add-poll`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
