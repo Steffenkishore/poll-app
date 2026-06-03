@@ -76,8 +76,10 @@ const Signup = () => {
 
   if (submitStatus.status === "LOADING") {
     return (
-      <div className="loader"></div>
-    )
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
   }
 
   return (

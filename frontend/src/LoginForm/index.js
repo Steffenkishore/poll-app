@@ -65,10 +65,12 @@ const LoginForm = () => {
   const renderFinal = () => {
     if (loginStatus.status === "LOADING") {
       return (
-        <div className="loader"></div>
-      )
+        <div className="loader-container">
+          <div className="loader"></div>
+        </div>
+      );
     }
-    
+
     const jwtToken = Cookies.get("jwt_token");
     if (jwtToken === undefined) {
       return (

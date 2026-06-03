@@ -39,6 +39,7 @@ const MyPolls = () => {
     const getPolls = async () => {
       try {
         // const apiUrl = "https://poll-app-backend-h0jw.onrender.com/my-polls";
+        setMyPolls((prev) => ({ ...prev, status: "LOADING" }));
         const apiUrl = `${process.env.REACT_APP_API_URL}/my-polls`;
         const option = {
           method: "GET",
@@ -56,6 +57,7 @@ const MyPolls = () => {
         }
       } catch (e) {
         console.log(e);
+        setMyPolls({status: "FAILED", data: null})
       }
     };
     if (myPolls.status === "INITIAL") {
@@ -214,6 +216,13 @@ const MyPolls = () => {
       setActiveFilter((prev) => !prev);
     };
 
+  if (myPolls.status === "LOADING") {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
 
   return (

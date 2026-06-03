@@ -221,6 +221,7 @@ const VotedPolls = () => {
       (each) => each.selectedOptionId
     );
 
+
     return (
       <div className="content-wrapper">
         <section className="polls-container" aria-live="polite">
@@ -316,7 +317,9 @@ const VotedPolls = () => {
             <p className="error-message">Failed to fetch data</p>
           )}
           {result.status === "INITIAL" && (
-            <p className="loading-message">Loading voted polls...</p>
+            <div className="loader-container">
+              <div className="loader"></div>
+            </div>
           )}
         </main>
       </div>

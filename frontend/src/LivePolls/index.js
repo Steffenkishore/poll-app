@@ -68,9 +68,11 @@ const LivePolls = () => {
 
   const submitForm = async (e, questionId, optionStyle) => {
     e.preventDefault();
+    setLoading(true);
     const jwtToken = Cookies.get("jwt_token");
     if (!jwtToken) {
       alert("Authentication required to vote.");
+      setLoading(false);
       return;
     }
 
@@ -88,9 +90,11 @@ const LivePolls = () => {
     if (!isAnswered) {
       errMsg = "Please select an option";
       submitStatus = false;
+      setLoading(false);
     } else if (hasMultipleAnswers && isSingle) {
       errMsg = "You cannot select more than one option";
       submitStatus = false;
+      setLoading(false);
     } else {
       if (postedPoll.length !== 0) {
         const selectedAnswers = postedPoll[0].answer.map(
@@ -116,15 +120,18 @@ const LivePolls = () => {
             const data = await response.json();
             errMsg = data.message || "Failed to submit vote.";
             submitStatus = false;
+            setLoading(false);
           } else {
             // Optionally reload polls after vote or disable poll voting
             setSelected((prev) =>
               prev.filter((item) => item.questionId !== questionId)
             );
+            setLoading(false);
           }
         } catch (err) {
           errMsg = "Network error while submitting vote.";
           submitStatus = false;
+          setLoading(false);
         }
       }
     }
@@ -221,6 +228,15 @@ const LivePolls = () => {
   console.log("filter state",activeFilter);
 
   // --- UI ---
+
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="loader"></div>
+      </div>
+    );
+  }
+  
   return (
     <div>
       <Navbar />
@@ -313,14 +329,13 @@ const LivePolls = () => {
 
         {/* ...rest of your main-content-bg/poll rendering stays unchanged... */}
         <div className="main-content-bg">
-          {loading && <p className="info-msg">Loading polls...</p>}
           {fetchError && <p className="error-msg">{fetchError}</p>}
           {!loading && filteredSamples.length === 0 && (
-            <p className="info-msg">No polls match your criteria.</p>
+            <p className="info-msg">No Polls Found.</p>
           )}
           {filteredSamples.map((sample) => {
             const filteredError = errorId.find(
-              (error) => error.questionId === sample.questionId
+              (error) => error.questionId === sample.questionId,
             );
             const hasVoted =
               filteredError &&
@@ -354,7 +369,7 @@ const LivePolls = () => {
                         className={
                           selected
                             .find(
-                              (item) => item.questionId === sample.questionId
+                              (item) => item.questionId === sample.questionId,
                             )
                             ?.answer.some((ans) => ans.answerId === option.id)
                             ? "selected option-style"
@@ -367,14 +382,14 @@ const LivePolls = () => {
                             sample.questionId,
                             option.id,
                             option.value,
-                            sample.optionType
+                            sample.optionType,
                           )
                         }
                         disabled={hasVoted}
                         aria-pressed={
                           selected
                             .find(
-                              (item) => item.questionId === sample.questionId
+                              (item) => item.questionId === sample.questionId,
                             )
                             ?.answer.some((ans) => ans.answerId === option.id)
                             ? "true"

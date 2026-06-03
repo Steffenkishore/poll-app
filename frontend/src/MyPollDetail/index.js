@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { TailSpin } from "react-loader-spinner";
 import { useParams, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import Navbar from "../Navbar";
@@ -32,10 +31,13 @@ const MyPollDetail = () => {
     status: "INITIAL",
     data: null,
   });
+
   const hasFetched = useRef(false);
 
   useEffect(() => {
     const apiFetch = async () => {
+      setOutputData((prev) => ({...prev, status: "LOADING"}));
+
       hasFetched.current = true;
       const jwtToken = Cookies.get("jwt_token");
       try {
@@ -162,8 +164,8 @@ const MyPollDetail = () => {
   };
 
   const renderLoading = () => (
-    <div className="poll-loading">
-      <TailSpin color="#00BFFF" height={60} width={60} />
+    <div className="loader-container">
+      <div className="loader"></div>
     </div>
   );
 
@@ -181,6 +183,8 @@ const MyPollDetail = () => {
         return renderLoading();
       case "FAILED":
         return renderFailure();
+      case "LOADING":
+        return renderLoading();
       default:
         return null;
     }
